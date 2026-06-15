@@ -7,10 +7,17 @@ pkg_check_modules(ADW REQUIRED libadwaita-1)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(AVToolkit src/main.c)
+add_executable(AVToolkit src/main.c
+        src/pages/welcome_page.c
+        src/pages/welcome_page.h
+        src/pages/sre_page.c
+        src/pages/sre_page.h
+        src/main.h
+        src/database.c
+        src/database.h)
 
 target_include_directories(AVToolkit PRIVATE ${GTK4_INCLUDE_DIRS} ${ADW_INCLUDE_DIRS})
-target_link_libraries(AVToolkit PRIVATE ${GTK4_LIBRARIES} ${ADW_LIBRARIES})
+target_link_libraries(AVToolkit PRIVATE ${GTK4_LIBRARIES} ${ADW_LIBRARIES} sqlite3)
 target_compile_options(AVToolkit PRIVATE ${GTK4_CFLAGS_OTHER} ${ADW_CFLAGS_OTHER})
 
 target_link_directories(AVToolkit PRIVATE ${GTK4_LIBRARY_DIRS})
